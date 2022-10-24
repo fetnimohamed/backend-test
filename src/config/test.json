@@ -1,0 +1,17 @@
+{
+  "env": "test",
+  "dbConfig": {
+    "host": "localhost",
+    "database": "mongoose",
+    "port": 27017
+  },
+  "secretKey": "NzQY4BR4jrJfCogepa8XgXXq5DyDnAgz",
+  "log": {
+    "format": "dev",
+    "dir": "../../logs"
+  },
+  "cors": {
+    "origin": true,
+    "credentials": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "env": "vps",
+  "dbConfig": {
+    "host": "mongodb://iowaves:seg123ab@141.94.21.81:27017",
+    "database": "trg"
+  },
+  "secretKey": "9nmUKw62qxJJd0xhu88ArZC7AWRcm4MA",
+  "log": {
+    "format": "combined",
+    "dir": "./logs"
+  },
+  "cors": {
+    "origin": "*",
+    "credentials": "*"
+  }
+}

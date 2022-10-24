@@ -1,0 +1,16 @@
+{
+  "env": "production",
+  "dbConfig": {
+    "host": "mongodb://127.0.0.1:27017",
+    "database": "trg"
+  },
+  "secretKey": "9nmUKw62qxJJd0xhu88ArZC7AWRcm4MA",
+  "log": {
+    "format": "combined",
+    "dir": "./logs"
+  },
+  "cors": {
+    "origin": true,
+    "credentials": true
+  }
+}
