@@ -1,21 +1,16 @@
-import { HttpException } from '@/common/exceptions/HttpException';
-import { isEmpty } from '@/common/utils/util';
-import { logger } from '@/common/utils/logger';
-import { v4 as uuidv4 } from 'uuid';
-import moment from 'moment';
 import { PrismaClient } from '@prisma/client';
-import { PlayersDto } from './players.dto';
+import fs from 'fs';
 
 class PlayersService {
   public prisma = new PrismaClient();
-  public playerDto = PlayersDto;
   public async getPlayers() {
     const players = await this.prisma.player.findMany();
     return players;
   }
 
-  public async addPlayer(player) {
-    const newPlayer = this.prisma.player.create({ data: player });
+  public async addPlayer(player, picture) {
+    fs.writeFileSync(__dirname + '/pictures/' + picture.name, picture.data);
+    const newPlayer = this.prisma.player.create({ data: { ...player, picture: __dirname + 'pictures\\' + picture.name } });
     return newPlayer;
   }
 

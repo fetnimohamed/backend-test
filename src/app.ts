@@ -18,6 +18,7 @@ import errorMiddleware from '@/common/middlewares/error.middleware';
 import { logger, stream } from '@/common/utils/logger';
 import { Serve } from './serve-app';
 import { PrismaClient } from '@prisma/client';
+const fileUpload = require('express-fileupload');
 class App {
   public app: express.Application;
   public port: number;
@@ -86,6 +87,7 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
+    this.app.use(fileUpload());
   }
 
   private initializeRoutes(routes: Routes[]) {
@@ -96,6 +98,7 @@ class App {
 
   private initializeSwagger() {
     const options = {
+      explorer: true,
       swaggerDefinition: {
         info: {
           title: 'REST API',

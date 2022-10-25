@@ -1,9 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import PlayersService from './player.service';
-import OfInProgressService from '@/configurationTRG/fabricationOrders/OfInProgress/ofInProgress.service';
-import clotureQuartService from '@/clotureQuart/clotureQuart.service';
-import QuartsService from '@/configurationTRG/config_quart/quarts.service';
-import moment from 'moment';
 
 class PlayersController {
   public playersService = new PlayersService();
@@ -17,10 +13,14 @@ class PlayersController {
     }
   };
   public addPlayers = async (req: Request, res: Response, next: NextFunction) => {
-    console.log('ddd', req.body);
     try {
       const player = req.body;
-      const response = await this.playersService.addPlayer(player);
+      const picture = req.files.file;
+      if (picture.mimetype == 'image/png' && req.body) {
+        const response = await this.playersService.addPlayer(player, picture);
+        return res.status(200).json({ response });
+      }
+      return res.status(404).send({ mesage: 'not the good data ' });
     } catch (error) {
       return res.status(500).json({ error });
     }
